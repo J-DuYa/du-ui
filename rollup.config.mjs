@@ -7,16 +7,26 @@ import commonjs from '@rollup/plugin-commonjs';
 
 export default [
   {
+    external: [
+      /node_modules/
+    ],
     input: 'src/index.ts',
     output: [
-      { dir: 'dist', preserveModules: true, entryFileName: '[name].js', chunkFileNames: '[name]-[hash].js', format: 'esm' }
+      {
+        dir: 'dist',
+        preserveModules: true,
+        entryFileName: '[name].js',
+        chunkFileNames: '[name]-[hash].js',
+        format: 'esm',
+      }
     ],
     plugins: [
       nodeResolve(),           // 解析 node_modules 中的模块
       commonjs(),              // 将 CommonJS 转为 ES6
       typescript({             // TypeScript 支持
         tsconfig: './tsconfig.json',
-        jsx: 'preserve'        // 保留 JSX 交给 Babel 处理
+        jsx: 'preserve',        // 保留 JSX 交给 Babel 处理
+        exclude: ['node_modules/**']
       }),
       babel({                 // Babel 转换
         babelHelpers: 'bundled',
