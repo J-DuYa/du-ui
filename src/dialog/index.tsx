@@ -1,13 +1,12 @@
 // Button.tsx
 import { defineComponent } from 'vue'
-import './index.scss'
 
-export interface IButton {
+export interface IDialog {
   name: String;
 }
 
 export default defineComponent({
-  name: 'MyButton',
+  name: 'Dialog',
   props: {
     color: {
       type: String,

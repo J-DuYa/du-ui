@@ -1,9 +1,11 @@
-import swc from '@rollup/plugin-swc';
 import dts from 'rollup-plugin-dts';
 import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 
 export default [
   {
@@ -30,12 +32,34 @@ export default [
       }),
       babel({                 // Babel 转换
         babelHelpers: 'bundled',
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        exclude: 'node_modules/**',
       }),
-      swc()
+      postcss({
+        extract: true,
+        minimize: true,
+        sourceMap: false,
+        plugins: [
+          autoprefixer(),
+          cssnano(),
+        ],
+        use: ['sass'],
+        extensions: ['.scss'],
+        generateBundle(options, bundle) {
+          for (const [fileName, asset] of Object.entries(bundle)) {
+            console.log('文件名')
+            if (fileName.endsWith('.css')) {
+
+            }
+          }
+        }
+      }),
     ]
   },
   {
+    external: [
+      /node_modules/
+    ],
     input: 'src/index.ts',
     output: { file: 'dist/index.d.ts', format: 'esm' },
     plugins: [dts()]
