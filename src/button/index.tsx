@@ -1,6 +1,5 @@
 // Button.tsx
 import { defineComponent } from 'vue'
-import './index.scss'
 
 export interface IButton {
   name: String;

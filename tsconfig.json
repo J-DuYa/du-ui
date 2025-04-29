@@ -14,9 +14,10 @@
     "declarationDir": "dist/types",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@style/*": ["style/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "style/**/*.scss"],
   "exclude": ["node_modules"]
 }

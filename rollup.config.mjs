@@ -3,14 +3,36 @@ import typescript from '@rollup/plugin-typescript';
 import babel from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import postcss from 'rollup-plugin-postcss';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
+import scss from 'rollup-plugin-scss';
+// import postcss from 'rollup-plugin-postcss';
+// import autoprefixer from 'autoprefixer';
+// import cssnano from 'cssnano';
 
 export default [
   {
     external: [
       /node_modules/
+    ],
+    input: ['./style/button/index.scss'],
+    output: [
+      {
+        dir: 'dist',
+        assetFileNames: 'button/index.css',
+        format: 'es',
+      }
+    ],
+    plugins: [
+      scss({
+        output: true, // 将 CSS 写入文件
+        outputStyle: 'compressed', // 压缩输出
+        fileName: 'button/index.css' // 指定输出路径和文件名
+      })
+    ]
+  },
+  {
+    external: [
+      /node_modules/,
+      /(.scss)$/
     ],
     input: 'src/index.ts',
     output: [
@@ -35,25 +57,6 @@ export default [
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         exclude: 'node_modules/**',
       }),
-      postcss({
-        extract: true,
-        minimize: true,
-        sourceMap: false,
-        plugins: [
-          autoprefixer(),
-          cssnano(),
-        ],
-        use: ['sass'],
-        extensions: ['.scss'],
-        generateBundle(options, bundle) {
-          for (const [fileName, asset] of Object.entries(bundle)) {
-            console.log('文件名')
-            if (fileName.endsWith('.css')) {
-
-            }
-          }
-        }
-      }),
     ]
   },
   {
@@ -63,5 +66,5 @@ export default [
     input: 'src/index.ts',
     output: { file: 'dist/index.d.ts', format: 'esm' },
     plugins: [dts()]
-  }
+  },
 ];
