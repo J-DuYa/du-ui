@@ -11,26 +11,6 @@ import scss from 'rollup-plugin-scss';
 export default [
   {
     external: [
-      /node_modules/
-    ],
-    input: ['./style/button/index.scss'],
-    output: [
-      {
-        dir: 'dist',
-        assetFileNames: 'button/index.css',
-        format: 'es',
-      }
-    ],
-    plugins: [
-      scss({
-        output: true, // 将 CSS 写入文件
-        outputStyle: 'compressed', // 压缩输出
-        fileName: 'button/index.css' // 指定输出路径和文件名
-      })
-    ]
-  },
-  {
-    external: [
       /node_modules/,
       /(.scss)$/
     ],
