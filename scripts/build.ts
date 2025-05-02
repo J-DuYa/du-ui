@@ -1,7 +1,3 @@
-/**
- * 用于生成构建 scss 的脚本
- * 
-*/
 import chalk from 'chalk'
 import { join } from 'node:path'
 import { glob } from 'glob'
