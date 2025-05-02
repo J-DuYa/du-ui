@@ -7,7 +7,8 @@
     "build": "rimraf dist && rollup --config=rollup.config.mjs && npm run build:scss",
     "build:scss": "esno scripts/build.ts",
     "dev": "rollup --config=rollup.config.mjs --watch",
-    "dev:css": "rollup --config=rollup.css.config.mjs --watch"
+    "dev:css": "rollup --config=rollup.css.config.mjs --watch",
+    "dev:website": "cd website && npm run dev"
   },
   "author": "duya <duyacode@gmail.com>",
   "license": "MIT",
