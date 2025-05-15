@@ -1,0 +1,50 @@
+{
+  "name": "@du/ui",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && rollup --config=rollup.config.mjs",
+    "build:scss": "esno scripts/build.ts",
+    "dev": "rollup --config=rollup.config.mjs --watch",
+    "dev:css": "rollup --config=rollup.css.config.mjs --watch",
+    "dev:website": "cd website && npm run dev"
+  },
+  "author": "duya <duyacode@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
+    "@types/node": "^22.15.3",
+    "@vue/compiler-sfc": "^3.5.14",
+    "@vue/runtime-dom": "^3.5.13",
+    "autoprefixer": "^10.4.21",
+    "chalk": "^4.x",
+    "cssnano": "^7.0.6",
+    "esno": "^4.8.0",
+    "glob": "^11.0.2",
+    "progress": "^2.0.3",
+    "rollup": "^4.40.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-scss": "^4.0.1",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-typescript": "^7.27.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@vue/babel-plugin-jsx": "^1.4.0",
+    "rimraf": "^6.0.1",
+    "sass": "^1.87.0",
+    "tslib": "^2.8.1",
+    "vue": "^3.5.13"
+  }
+}
